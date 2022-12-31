@@ -13,7 +13,25 @@ function displayTemperature(response) {
     humidity.innerHTML = Math.round(response.data.main.humidity)
     let wind = document.querySelector("#wind")
     wind.innerHTML = Math.round(response.data.wind.speed)
+    let dateElement = document.querySelector("#time");
+    dateElement.innerHTML = showTime(response.data.dt * 1000 ) ;
 
+}
+
+function showTime (timestamp) {
+
+let currentTime = new Date(timestamp);
+let days = ["sunday", "Monday", "Tuesday", "Wednsday", "thursday", "Friday", "saturday"];
+    let currentDay = days[currentTime.getDay()];
+    let hour = currentTime.getHours();
+    if (hour < 10) {
+        hour = `0${hour}`
+    }
+    let minut = currentTime.getMinutes();
+    if (minut <10) {
+        minut = `0${minut}`
+    }
+    return `${currentDay} ${hour}:${minut}`
 }
 axios.get(apiUrl).then(displayTemperature)
 
