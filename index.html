@@ -11,6 +11,7 @@
 </head>
 <body>
    <div class="container">
+    <div class="stracture">
     <div class="weather-app">
     <h1>Kerman</h1>
     <ul>
@@ -19,8 +20,12 @@
     </ul>
     <div class="row">
         <div class="col-md-6">
+            <div class="d-flex weather-temeprature">
             <img src="http://ssl.gstatic.com/onebox/weather/64/sunny.png" alt="clear">
-            12 ℃ | ℉
+            
+           <strong> 12</strong> <span class="units"><a href="" class="selsius">℃</a> | <a href="" class="farenhiet">℉</a>
+            </span>
+            </div>
         </div>
         <div class="col-md-6">
             <ul>
@@ -29,6 +34,7 @@
                 <li>Wind: 5 km/h</li>
             </ul>
         </div>
+    </div>
     </div>
     <small>
         <a href="github.com/Fatemeboroumand/weather-app" target="_blank">
@@ -40,7 +46,8 @@
 
 
 </div>
-   </div> 
+   
+   </div>
     <script src="src/index.js"></script>
 </body>
 </html>
