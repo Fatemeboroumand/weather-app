@@ -15,6 +15,9 @@ function displayTemperature(response) {
     wind.innerHTML = Math.round(response.data.wind.speed)
     let dateElement = document.querySelector("#time");
     dateElement.innerHTML = showTime(response.data.dt * 1000 ) ;
+    let iconElement = document.querySelector("#icon")
+    let currentIcon = response.data.weather[0].icon
+    iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${currentIcon}@2x.png`)
 
 }
 
