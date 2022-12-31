@@ -1,5 +1,9 @@
-let apiKey = "61b1ac8421d64c213cde1e9b5856144a"
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=kerman&appid=${apiKey}&units=metric`
+function search(city){
+    let apiKey = "61b1ac8421d64c213cde1e9b5856144a"
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+axios.get(apiUrl).then(displayTemperature)
+}
+
 
 function displayTemperature(response) {
     let city = document.querySelector("#city")
@@ -36,6 +40,19 @@ let days = ["sunday", "Monday", "Tuesday", "Wednsday", "thursday", "Friday", "sa
     }
     return `${currentDay} ${hour}:${minut}`
 }
-axios.get(apiUrl).then(displayTemperature)
 
 
+function handelSubmit(event) {
+    event.preventDefault();
+    let searchedCity = document.querySelector("#entered-city")
+    search(searchedCity.value)
+
+
+
+}
+
+search("kerman");
+
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handelSubmit);

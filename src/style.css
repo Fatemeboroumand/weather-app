@@ -41,15 +41,15 @@ li {
 }
 
 .weather-temeprature  strong {
-    font-size: 48px;
-    line-height: 58px;
+    font-size: 64px;
+    line-height: 2;
     font-weight: normal;
 }
 
 .weather-temeprature .units {
     position: relative;
     font-size: 20px;
-    top: 3px;
+    top: 30px;
     
 }
 

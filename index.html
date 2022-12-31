@@ -14,13 +14,23 @@
    <div class="container">
     <div class="stracture">
     <div class="weather-app">
+        <form id="search-form" class="mb-3">
+            <dive class="row">
+                <dive class="col-9">
+                    <input type="search"  placeholder="Enter a city..." class="form-control" id="entered-city">
+                </dive>
+                <dive class="col-3">
+                    <input type="submit" value="Search" class="btn btn-info w-100">
+                </dive>
+            </dive>
+        </form>
     <h1 id="city">Kerman</h1>
     <ul>
         <li >Last updated at <span id="time"></span></li>
         <li id="weather-discribtion">clear</li>
     </ul>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="d-flex weather-temeprature">
             <img src="http://ssl.gstatic.com/onebox/weather/64/sunny.png" alt="clear" id="icon">
             
@@ -28,7 +38,7 @@
             </span>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <ul>
                 <li>Precipitation: <span id="precipitation">0</span>%</li>
                 <li>Humidity: <span id="humidity">32</span>%</li>
