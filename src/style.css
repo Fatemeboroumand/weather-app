@@ -56,3 +56,12 @@ li {
 a {
     text-decoration: none;
 }
+
+.weather-temeprature .active {
+    color: black;
+    cursor: default;
+}
+
+.weather-temeprature .active:hover {
+    text-decoration: none;
+}

@@ -22,6 +22,7 @@ function displayTemperature(response) {
     let iconElement = document.querySelector("#icon")
     let currentIcon = response.data.weather[0].icon
     iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${currentIcon}@2x.png`)
+    selsiusTemp = response.data.main.temp
 
 }
 
@@ -46,13 +47,35 @@ function handelSubmit(event) {
     event.preventDefault();
     let searchedCity = document.querySelector("#entered-city")
     search(searchedCity.value)
-
-
-
 }
 
-search("kerman");
 
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handelSubmit);
+
+
+function changeToFarenhiet(event) {
+    event.preventDefault();
+    selsius.classList.remove("active");
+    farenhiet.classList.add("active");
+    let farenhietTemp = document.querySelector("#temperature")
+    farenhietTemp.innerHTML = Math.round((selsiusTemp * 9 ) / 5 + 32)
+}
+
+function changeToSelsius(event) {
+    event.preventDefault();
+    farenhiet.classList.remove("active");
+    selsius.classList.add("active");
+    let selsiusTemperature = document.querySelector("#temperature");
+    selsiusTemperature.innerHTML = Math.round(selsiusTemp)
+}
+let selsiusTemp = null;
+
+let farenhiet = document.querySelector("#farenhiet");
+farenhiet.addEventListener("click", changeToFarenhiet);
+
+let selsius = document.querySelector("#selsius")
+selsius.addEventListener("click", changeToSelsius);
+
+search("kerman");
