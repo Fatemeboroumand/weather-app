@@ -4,9 +4,7 @@ let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${api
 axios.get(apiUrl).then(displayTemperature)
 }
 
-function displayTemperatured(response) {
-    console.log(response.data)
-}
+
 
 
 function getForecast(coordinate) {
@@ -23,7 +21,7 @@ function displayTemperature(response) {
     city.innerHTML = response.data.city
     let temperatureElement =document.querySelector("#temperature")
     temperatureElement.innerHTML = Math.round(response.data.temperature.current)
-    console.log(response.data)
+   
     let weatherDiscription = document.querySelector("#weather-discribtion")
     weatherDiscription.innerHTML =response.data.condition.description
     let humidity = document.querySelector("#humidity")
@@ -87,7 +85,7 @@ function changeToSelsius(event) {
 
 
 function formatDay(timestamp) {
-    console.log(timestamp)
+    
     let date = new Date(timestamp * 1000);
     let day = date.getDay();
     let days =["sat", "sun", "Mon", "Teh", "Wed", "The", "Friday" ]
@@ -96,7 +94,7 @@ function formatDay(timestamp) {
 
 
 function displayForecast(response) {
-    console.log(response.data);
+    
 
     let forecast = response.data.daily;
 
