@@ -5,6 +5,16 @@ axios.get(apiUrl).then(displayTemperature)
 }
 
 
+
+function getForecast(coordinates) {
+    console.log(coordinates)
+    let apiKey = "fc27d3cat0oef346a51ba4fd0ca6ded3"
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}`
+  
+    axios.get(apiUrl).then(displayForecast)
+}
+
+
 function displayTemperature(response) {
     let city = document.querySelector("#city")
     city.innerHTML = response.data.name
@@ -23,6 +33,7 @@ function displayTemperature(response) {
     let currentIcon = response.data.weather[0].icon
     iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${currentIcon}@2x.png`)
     selsiusTemp = response.data.main.temp
+    getForecast(response.data.coord)
 
 }
 
@@ -72,29 +83,45 @@ function changeToSelsius(event) {
 }
 
 
-function displayForcast() {
-    let forcastElement = document.querySelector("#forcast")
+function formatDay(timestamp) {
+    console.log(timestamp)
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
     let days =["sat", "sun", "Mon", "Teh", "Wed", "The", "Friday" ]
+    return days[day];
+}
+
+
+function displayForecast(response) {
+    console.log(response.data);
+
+    let forecast = response.data.daily;
+
+
+    let forcastElement = document.querySelector("#forcast")
+   
     let forcastHtml = `<div class="row">`;
-    days.forEach(function(day) {
+    forecast.forEach(function(forecastDay , index) {
+        if (index < 6 ) {     
 
         forcastHtml = forcastHtml +
         `<div class="col-2">
         <div class="weather-forcast-date">
-            ${day}
+            ${formatDay(response.data.daily[index].time)}
         </div>
         <img src="https://ssl.gstatic.com/onebox/weather/48/sunny.png" alt="" width="42">
         <div class="weather-forcast-temperature">
             <span class="maximum">18°</span>
             <span class="minimum">12°</span>
         </div>
-    </div>`;
+    </div>`;}
     })
 
     forcastHtml= forcastHtml + `</dive>`;
     forcastElement.innerHTML = forcastHtml
-    
-}
+ }
+
+
 let selsiusTemp = null;
 
 let farenhiet = document.querySelector("#farenhiet");
@@ -104,4 +131,4 @@ let selsius = document.querySelector("#selsius")
 selsius.addEventListener("click", changeToSelsius);
 
 search("kerman");
-displayForcast();
+
