@@ -109,10 +109,10 @@ function displayForecast(response) {
         <div class="weather-forcast-date">
             ${formatDay(response.data.daily[index].time)}
         </div>
-        <img src="https://ssl.gstatic.com/onebox/weather/48/sunny.png" alt="" width="42">
+        <img src=${response.data.daily[index].condition.icon_url} alt="" width="42">
         <div class="weather-forcast-temperature">
-            <span class="maximum">18°</span>
-            <span class="minimum">12°</span>
+            <span class="maximum">${Math.round(response.data.daily[index].temperature.maximum)}°</span>
+            <span class="minimum">${Math.round(response.data.daily[index].temperature.minimum)}°</span>
         </div>
     </div>`;}
     })
