@@ -1,15 +1,18 @@
 function search(city){
-    let apiKey = "61b1ac8421d64c213cde1e9b5856144a"
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+    let apiKey = "fc27d3cat0oef346a51ba4fd0ca6ded3"
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`
 axios.get(apiUrl).then(displayTemperature)
 }
 
+function displayTemperatured(response) {
+    console.log(response.data)
+}
 
 
-function getForecast(coordinates) {
-    console.log(coordinates)
+function getForecast(coordinate) {
+    console.log(coordinate)
     let apiKey = "fc27d3cat0oef346a51ba4fd0ca6ded3"
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}`
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinate.longitude}&lat=${coordinate.latitude}&key=${apiKey}`
   
     axios.get(apiUrl).then(displayForecast)
 }
@@ -17,23 +20,23 @@ function getForecast(coordinates) {
 
 function displayTemperature(response) {
     let city = document.querySelector("#city")
-    city.innerHTML = response.data.name
+    city.innerHTML = response.data.city
     let temperatureElement =document.querySelector("#temperature")
-    temperatureElement.innerHTML = Math.round(response.data.main.temp)
+    temperatureElement.innerHTML = Math.round(response.data.temperature.current)
     console.log(response.data)
     let weatherDiscription = document.querySelector("#weather-discribtion")
-    weatherDiscription.innerHTML =response.data.weather[0].description
+    weatherDiscription.innerHTML =response.data.condition.description
     let humidity = document.querySelector("#humidity")
-    humidity.innerHTML = Math.round(response.data.main.humidity)
+    humidity.innerHTML = Math.round(response.data.temperature.humidity)
     let wind = document.querySelector("#wind")
     wind.innerHTML = Math.round(response.data.wind.speed)
     let dateElement = document.querySelector("#time");
-    dateElement.innerHTML = showTime(response.data.dt * 1000 ) ;
+    dateElement.innerHTML = showTime(response.data.time * 1000 ) ;
     let iconElement = document.querySelector("#icon")
-    let currentIcon = response.data.weather[0].icon
-    iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${currentIcon}@2x.png`)
-    selsiusTemp = response.data.main.temp
-    getForecast(response.data.coord)
+    let currentIcon = response.data.condition.icon_url
+    iconElement.setAttribute("src", `${currentIcon}`)
+    selsiusTemp = response.data.temperature.current
+    getForecast(response.data.coordinates)
 
 }
 
