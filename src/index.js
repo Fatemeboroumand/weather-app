@@ -70,6 +70,31 @@ function changeToSelsius(event) {
     let selsiusTemperature = document.querySelector("#temperature");
     selsiusTemperature.innerHTML = Math.round(selsiusTemp)
 }
+
+
+function displayForcast() {
+    let forcastElement = document.querySelector("#forcast")
+    let days =["sat", "sun", "Mon", "Teh", "Wed", "The", "Friday" ]
+    let forcastHtml = `<div class="row">`;
+    days.forEach(function(day) {
+
+        forcastHtml = forcastHtml +
+        `<div class="col-2">
+        <div class="weather-forcast-date">
+            ${day}
+        </div>
+        <img src="https://ssl.gstatic.com/onebox/weather/48/sunny.png" alt="" width="42">
+        <div class="weather-forcast-temperature">
+            <span class="maximum">18°</span>
+            <span class="minimum">12°</span>
+        </div>
+    </div>`;
+    })
+
+    forcastHtml= forcastHtml + `</dive>`;
+    forcastElement.innerHTML = forcastHtml
+    
+}
 let selsiusTemp = null;
 
 let farenhiet = document.querySelector("#farenhiet");
@@ -79,3 +104,4 @@ let selsius = document.querySelector("#selsius")
 selsius.addEventListener("click", changeToSelsius);
 
 search("kerman");
+displayForcast();
